@@ -1,0 +1,9 @@
+package com.gis.model;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+public class LocalicazacaoGis {
+    @Id
+    private Long id;
+}

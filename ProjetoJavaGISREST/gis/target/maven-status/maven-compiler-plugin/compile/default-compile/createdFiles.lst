@@ -1,0 +1,11 @@
+com\gis\service\MemberRegistration.class
+com\gis\model\Member_.class
+com\gis\util\Resources.class
+com\gis\model\Localizacao.class
+com\gis\data\MemberListProducer.class
+com\gis\data\MemberRepository.class
+com\gis\rest\JaxRsActivator.class
+com\gis\model\Member.class
+com\gis\controller\MemberController.class
+com\gis\rest\MemberResourceRESTService.class
+com\gis\rest\LocalizacaoGis.class
