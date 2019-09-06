@@ -1,0 +1,39 @@
+
+
+CREATE COMPUTE MODULE postLocalizacao_Compute2
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		--SET OutputRoot.JSON.Data.logradouro = InputRoot.JSON.Data.Response.Address.Street;	
+		SET Environment.Variables.NOME_DA_RUA = InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.Address.Street;
+		SET Environment.Variables.LONGITUDE = InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.DisplayPosition.Longitude;
+		SET Environment.Variables.LATITUDE = InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.DisplayPosition.Latitude;
+		
+		SET OutputRoot.JSON.Data.logradouro = InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.Address.Street;
+		SET OutputRoot.JSON.Data.numero = Environment.Variables.NUMERO_INFORMADO;
+		SET OutputRoot.JSON.Data.bairro = InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.Address.District;
+		SET OutputRoot.JSON.Data.municipio = InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.Address.City;
+		SET OutputRoot.JSON.Data.estado = InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.Address.State;
+		SET OutputRoot.JSON.Data.cep = REPLACE(InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.Address.PostalCode, '-', '');
+		SET OutputRoot.JSON.Data.situacao = 'CADASTRADO';
+		SET OutputRoot.JSON.Data.longitude = InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.DisplayPosition.Longitude;
+		SET OutputRoot.JSON.Data.latitude = InputRoot.JSON.Data.Response.View.Item.Result.Item.Location.DisplayPosition.Latitude;
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

@@ -1,0 +1,32 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "api_gis",
+    "version" : "1.0.0",
+    "description" : "api_gis"
+  },
+  "paths" : {
+    "/cep/{cep}" : {
+      "get" : {
+        "operationId" : "getCep",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve cep",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "cep",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/api.postmon.com.br/v1"
+}

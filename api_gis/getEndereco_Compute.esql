@@ -1,0 +1,28 @@
+
+
+CREATE COMPUTE MODULE getEndereco_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE endereco CHAR;
+		SET endereco = InputLocalEnvironment.REST.Input.Parameters.endereco;
+		SET OutputLocalEnvironment.Destination.HTTP.RequestURL = 'https://geocoder.api.here.com/6.2/geocode.json?searchtext=' || endereco || '&app_id=irBYHnI5Ue6ChWK2z0eM&app_code=14UuYEr7LgqghbbgBk-5jw&gen=9&format=json';
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

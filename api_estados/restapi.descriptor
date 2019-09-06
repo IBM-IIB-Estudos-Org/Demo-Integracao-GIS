@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="swagger.json" implementation="gen/api_estados.msgflow" https="false">
+    <ns2:operations>
+        <ns2:operation name="deleteSigla" implementation="deleteSigla.subflow"/>
+        <ns2:operation name="getEstados" implementation="getEstados.subflow"/>
+        <ns2:operation name="getSigla" implementation="getSigla.subflow"/>
+        <ns2:operation name="postEstados" implementation="postEstados.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers/>
+</ns2:restapiDescriptor>

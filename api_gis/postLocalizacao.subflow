@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmWSRequest.msgnode="ComIbmWSRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="postLocalizacao.subflow" nsPrefix="postLocalizacao.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="postLocalizacao" bundleName="postLocalizacao" pluginId="api_gis"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/api_gis/icons/full/obj16/postLocalizacao.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/api_gis/icons/full/obj30/postLocalizacao.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="25,25">
+        <translation xmi:type="utility:TranslatableString" key="Input" bundleName="postLocalizacao" pluginId="api_gis"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="999,379">
+        <translation xmi:type="utility:TranslatableString" key="Output" bundleName="postLocalizacao" pluginId="api_gis"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="122,25" destination="file" filePath="C:\Users\Administrador\Localizacao.txt" pattern="${Root}&#xD;&#xA; ${LocalEnvironment}&#xD;&#xA;${Environment} &#xD;&#xA;${ExceptionList}">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="222,25" computeExpression="esql://routine/#postLocalizacao_Compute.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="PreparacaoURL01"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="375,26" URLSpecifier="http://api.postmon.com.br/v1/cep/" httpMethod="GET" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON" acceptCompressedResponses="true">
+        <translation xmi:type="utility:ConstantString" string="ServicoBuscaEnderecoByCEPCorreiosREST"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="582,181" URLSpecifier="https://geocoder.api.here.com/6.2/geocode.json?searchtext=200%20S%20Mathilda%20Sunnyvale%20CA&amp;app_id=irBYHnI5Ue6ChWK2z0eM&amp;app_code=14UuYEr7LgqghbbgBk-5jw&amp;gen=9&amp;format=xml" httpMethod="GET" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON" acceptCompressedResponses="true">
+        <translation xmi:type="utility:ConstantString" string="ServicoGeocodeBuscaCoordenadaByEnderecoHereREST"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="835,26" computeExpression="esql://routine/#postLocalizacao_Compute1.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="PreparacaoURL02"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="713,26" destination="file" filePath="C:\Users\Administrador\Localizacao.txt" pattern="${Root}&#xD;&#xA; ${LocalEnvironment}&#xD;&#xA;${Environment} &#xD;&#xA;${ExceptionList}">
+        <translation xmi:type="utility:ConstantString" string="Trace1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="32,229" destination="file" filePath="C:\Users\Administrador\Localizacao.txt" pattern="${Root}&#xD;&#xA; ${LocalEnvironment}&#xD;&#xA;${Environment} &#xD;&#xA;${ExceptionList}">
+        <translation xmi:type="utility:ConstantString" string="Trace2"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="31,283" computeExpression="esql://routine/#postLocalizacao_Compute2.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="PreparaParametrosServicoCriacaoLocalizacaoBancoEspacial"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="335,343" destination="file" filePath="C:\Users\Administrador\Localizacao.txt" pattern="${Root}&#xD;&#xA; ${LocalEnvironment}&#xD;&#xA;${Environment} &#xD;&#xA;${ExceptionList}">
+        <translation xmi:type="utility:ConstantString" string="Trace3"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="412,382" URLSpecifier="http://localhost:8083/gis/rest/localizacao" timeoutForServer="2" httpVersion="1.1" protocol="TLS" acceptCompressedResponses="true">
+        <translation xmi:type="utility:ConstantString" string="ServicoCriacaoLocalizacaoBancoEspacial"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="891,379" destination="file" filePath="C:\Users\Administrador\Localizacao.txt" pattern="${Root}&#xD;&#xA; ${LocalEnvironment}&#xD;&#xA;${Environment} &#xD;&#xA;${ExceptionList}">
+        <translation xmi:type="utility:ConstantString" string="Trace4"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_16" location="653,378" computeExpression="esql://routine/#postLocalizacao_Compute3.Main" computeMode="all">
+        <translation xmi:type="utility:ConstantString" string="RetornaURLServicoGetDadoPersistido"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_17" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_18" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_19" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_20" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_24" targetNode="FCMComposite_1_12" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_26" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_29" targetNode="FCMComposite_1_14" sourceNode="FCMComposite_1_13" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_32" targetNode="OutTerminal.Output_1" sourceNode="FCMComposite_1_15" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_33" targetNode="FCMComposite_1_16" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_34" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_16" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard>
+      <stickyNote location="26,121" association="FCMComposite_1_4">
+        <body xmi:type="utility:ConstantString" string="Prepara a URL da chamada do Serviço&#xA;de Busca de Endereço pelo CEP, com o parâmetro&#xA;do CEP a ser pesquisado"/>
+      </stickyNote>
+      <stickyNote location="368,93" association="FCMComposite_1_6">
+        <body xmi:type="utility:ConstantString" string="Serviço dos CORREIOS de Busca de Endereço por CEP,&#xA;retorna os atributos: logradouro, bairro, cidade, estado e cep"/>
+      </stickyNote>
+      <stickyNote location="796,134" association="FCMComposite_1_8">
+        <body xmi:type="utility:ConstantString" string="Preparação da URL para chamada do serviço &#xA;de Geocode, contendo o parâmetro composto&#xA; por logradouro,número e município"/>
+      </stickyNote>
+      <stickyNote location="500,251" association="FCMComposite_1_7">
+        <body xmi:type="utility:ConstantString" string="Serviço do HERE de Geocode onde recebe o endereço a ser pesquisado (Ex: &quot;Avenida Antônio&#xA;de Souza Noschese 1675 São Paulo&quot;, realiza o geocode para trazer a coordenada (latitude&#xA;e longitude) além de outros atributos como logradouro, bairro, município e estado"/>
+      </stickyNote>
+      <stickyNote location="21,389" association="FCMComposite_1_12">
+        <body xmi:type="utility:ConstantString" string="Prepara os parâmetros para chamada do&#xA;serviço de criação da localização no banco&#xA;de dados espacial. A coordenada resultante&#xA;do serviço chamado anteriormente também &#xA;é adicionado nos parâmetros para criação do&#xA;objeto &quot;ponto&quot; no banco de dados espacial"/>
+      </stickyNote>
+      <stickyNote location="327,446" association="FCMComposite_1_14">
+        <body xmi:type="utility:ConstantString" string="Serviço para persistência dos dados no banco de dados espacial,&#xA;com a coordenada do endereço, o logradouro, número, bairro,&#xA;município, estado e situação do registro "/>
+      </stickyNote>
+      <stickyNote location="770,446" association="FCMComposite_1_15">
+        <body xmi:type="utility:ConstantString" string="Retorna a url do serviço REST para consulta do&#xA;do registro adicionado no banco de dados&#xA;espacial"/>
+      </stickyNote>
+    </stickyBoard>
+  </eClassifiers>
+</ecore:EPackage>

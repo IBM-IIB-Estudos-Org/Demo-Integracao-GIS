@@ -1,0 +1,142 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "api_gis",
+    "version" : "1.0.0",
+    "description" : "api_gis"
+  },
+  "paths" : {
+    "/cep/{cep}" : {
+      "get" : {
+        "operationId" : "getCep",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve cep",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "cep",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/localizacao" : {
+      "post" : {
+        "operationId" : "postLocalizacao",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a localizacao",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/cep_numero"
+          },
+          "description" : "cep_numero",
+          "required" : true
+        } ]
+      }
+    },
+    "/geocode/{endereco}" : {
+      "get" : {
+        "operationId" : "getEndereco",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/<Localizacao"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve endereco",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "endereco",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/api_gis/v1",
+  "definitions" : {
+    "<Localizacao" : {
+      "type" : "object",
+      "properties" : {
+        "logradouro" : {
+          "type" : "string"
+        },
+        "numero" : {
+          "type" : "string",
+          "format" : ""
+        },
+        "bairro" : {
+          "type" : "string"
+        },
+        "municipio" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "cep" : {
+          "type" : "integer"
+        },
+        "situacao" : {
+          "type" : "string"
+        },
+        "longitude" : {
+          "type" : "string"
+        },
+        "latitude" : {
+          "type" : "string"
+        },
+        "id_objeto_espacial" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "logradouro", "numero", "bairro", "municipio", "estado", "cep", "situacao" ]
+    },
+    "Error" : {
+      "type" : "object",
+      "properties" : {
+        "Status" : {
+          "type" : "string"
+        },
+        "Error" : {
+          "type" : "integer"
+        },
+        "Message" : {
+          "type" : "string"
+        },
+        "Path" : {
+          "type" : "string"
+        }
+      }
+    },
+    "cep_numero" : {
+      "type" : "object",
+      "properties" : {
+        "cep" : {
+          "type" : "string"
+        },
+        "numero" : {
+          "type" : "integer"
+        }
+      }
+    }
+  }
+}

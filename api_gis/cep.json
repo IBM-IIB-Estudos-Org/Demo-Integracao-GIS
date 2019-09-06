@@ -1,0 +1,34 @@
+{
+  "swagger" : "2.0",
+  "schemes" : [ "http", "https" ],
+  "host" : "api.postmon.com.br",
+  "basePath" : "/v1",
+  "info" : {
+    "title" : "cep",
+    "version" : "1.0.0",
+    "description" : "cep"
+  },
+  "paths" : {
+    "/cep/{cep}" : {
+      "get" : {
+        "operationId" : "cep",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve cep",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "cep",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    }
+  }
+}
