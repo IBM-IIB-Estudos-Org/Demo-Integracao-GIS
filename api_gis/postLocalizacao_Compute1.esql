@@ -9,9 +9,9 @@ CREATE COMPUTE MODULE postLocalizacao_Compute1
 		DECLARE numero INTEGER;
 		DECLARE cidade CHARACTER;
 
-		SET logradouro = InputRoot.JSON.Data.logradouro;
-	    SET numero = Environment.Variables.NUMERO_INFORMADO;
-	    SET cidade = InputRoot.JSON.Data.cidade;
+	        SET logradouro = InputRoot.JSON.Data.logradouro;
+	        SET numero = Environment.Variables.NUMERO_INFORMADO;
+	        SET cidade = InputRoot.JSON.Data.cidade;
 	    
 		SET OutputLocalEnvironment.Destination.HTTP.RequestURL = 'https://geocoder.api.here.com/6.2/geocode.json?searchtext=' || logradouro || ' ' || CAST(numero AS CHARACTER) || ' ' || cidade || '&app_id=irBYHnI5Ue6ChWK2z0eM&app_code=14UuYEr7LgqghbbgBk-5jw&gen=9&format=xml';
 		
